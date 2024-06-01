@@ -30,7 +30,9 @@ By this repository, you will learn how to use Azure pipeline to deploy sample Ma
 
 ![Make all](screenshots/make-all.PNG)
 5. Run the command `sh commands.sh` for Azure pipeline and App Service creation.
+
 6. Clone the repo into local laptop/desktop (use either HTTPs or SSH)
+
 7. Verify project running on Azure App Service.
 
 ![App Service is Running](screenshots/app-service-running.PNG)
@@ -55,7 +57,7 @@ python.exe -m pip install --upgrade pip
 pip install --upgrade pip && pip install -r requirements.txt
 ```
 
-9. Start `locust` in your local environment by running command: `locust -f locustfile.py --host=https://nguyenlc1-project2.azurewebsites.net`. The result should be as below.
+9. Start `locust` in your local environment by running command: `locust -f locustfile.py --host=https://mikezxc136-udacity-project2.azurewebsites.net`. The result should be as below.
 
 ![Locust Starting](screenshots/start-locust.PNG)
 
@@ -145,7 +147,7 @@ sudo ./svc.sh start
 ![Setup Agent](screenshots/setup-agent4.PNG)
 
 9. Back to project page and add new environment named `Flask`.
-10. User service principal information and create new service connection with named `nguyenlc1-project2`, remember to grant full access.
+10. User service principal information and create new service connection with named `mikezxc136-udacity-project2`, remember to grant full access.
 11. Make the change and push the change to your Repo.
 
 * Passing tests that are displayed after running the `make all` command from the `Makefile`
