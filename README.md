@@ -8,8 +8,8 @@ By this repository, you will learn how to use Azure pipeline to deploy sample Ma
 
 ## Project Plan
 
-* [Trello board for the project](https://trello.com/b/wDMvjqUG)
-* [Project plan](https://docs.google.com/spreadsheets/d/1du_E_xeAR8mFBBxwhbhLPoOV3wZG-gVc/edit?usp=sharing&ouid=110340001021106604897&rtpof=true&sd=true)
+* [Trello board for the project](https://trello.com/b/EK2iO0mA/mike-project2)
+* [Project plan](https://1drv.ms/x/s!Ap6lZbK3PEB_mk3rQWBhgkWiEjkH?e=KAn9Ki)
 
 ## Getting Started
 
