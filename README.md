@@ -17,11 +17,11 @@ By this repository, you will learn how to use Azure pipeline to deploy sample Ma
 
 1. Create new Storage Account with unique name in same region with existing resource group.
 
-![Cloud Shell Setup](./screenshots/cloud-shell-setup.PNG)
+![Cloud Shell Setup]
 2. Follow instruction at [adding-a-new-ssh-key-to-your-github-account](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account) and add public key to your Git Hub Account.
 3. Clone the repo into Cloud Shell use SSH URL.
 
-![git Clone](screenshots/git-clone-01.png)
+![git Clone](./screenshots/cloud-shell-setup.PNG)
 
 * The result should be as below
 
@@ -80,6 +80,7 @@ pip install --upgrade pip && pip install -r requirements.txt
 
 ![Setup Agent](screenshots/setup-agent1.PNG)
 7. Open "Virtual machine" service, search by name `my-agent-1` and copy Public IP address.
+
 8. Connect to the VM by running command `ssh devopsagent@<IP_in_Step_7>`. Typing `DevOpsAgent@123` as password (Please note that password will not show during keyin time)
 
 * Install docker in the agent.
