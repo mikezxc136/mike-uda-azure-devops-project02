@@ -8,7 +8,7 @@ By this repository, you will learn how to use Azure pipeline to deploy sample Ma
 
 ## Project Plan
 
-* [Trello board for the project](https://trello.com/b/EK2iO0mA/mike-project2)
+* [Trello board](https://trello.com/b/EK2iO0mA/mike-project2)
 * [Project plan](https://1drv.ms/x/s!Ap6lZbK3PEB_mk3rQWBhgkWiEjkH?e=KAn9Ki)
 
 ## Getting Started
@@ -33,8 +33,6 @@ By this repository, you will learn how to use Azure pipeline to deploy sample Ma
 6. Clone the repo into local laptop/desktop (use either HTTPs or SSH)
 
 7. Verify project running on Azure App Service.
-
-![App Service is Running](screenshots/app-service-running.PNG)
 
 * By browser:
 
