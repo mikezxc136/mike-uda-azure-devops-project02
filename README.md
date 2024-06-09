@@ -1,4 +1,4 @@
-[![Python application test with GitHub Actions](https://github.com/caonguyen207/uda-azure-devops-project02/actions/workflows/python-app.yml/badge.svg?branch=main)](https://github.com/caonguyen207/uda-azure-devops-project02/actions/workflows/python-app.yml)
+[![Python application test with GitHub Actions](https://github.com/mikezxc136/mike-uda-azure-devops-project02/actions/workflows/python-app.yml/badge.svg?branch=main)](https://github.com/mikezxc136/mike-uda-azure-devops-project02/actions/workflows/python-app.yml)
 
 # Overview
 
