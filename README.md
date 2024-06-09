@@ -38,7 +38,6 @@ By this repository, you will learn how to use Azure pipeline to deploy sample Ma
 
 ![Verify by browser](screenshots/test-via-browser.PNG)
 
-
 * Output of streamed log files from deployed application
 
 ![App Service Logs](screenshots/app-service-logs.PNG)
@@ -59,9 +58,7 @@ pip install --upgrade pip && pip install -r requirements.txt
 
 ![Run Predict in local](screenshots/test-by-cmd.PNG)
 
-11. Open browser and paste: `http://localhost:8089/?tab=stats`, it should display testing result as below:
-
-![Locust Test Result](screenshots/locust-test-result.PNG)
+11. Open browser and paste: `http://localhost:8089/?tab=stats`
 
 ### Configure Azure Pipeline Agent
 
@@ -71,8 +68,6 @@ pip install --upgrade pip && pip install -r requirements.txt
 4. Create a Personal Access Token (PAT) with "Full access" permission. You need store the token in secure place.
 5. Go to "Project settings" on bottom-left conner, select  "Agent pools" and create new pool named `mypool` as `Self-hosted` type.
 6. Open the newly created Agent pool to add a new agent, select `Linux x64` and copy the download link.
-
-![Setup Agent](screenshots/setup-agent1.PNG)
 7. Open "Virtual machine" service, search by name `my-agent-1` and copy Public IP address.
 
 8. Connect to the VM by running command `ssh devopsagent@<IP_in_Step_7>`. Typing `DevOpsAgent@123` as password (Please note that password will not show during keyin time)
