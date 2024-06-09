@@ -17,7 +17,6 @@ By this repository, you will learn how to use Azure pipeline to deploy sample Ma
 
 1. Create new Storage Account with unique name in same region with existing resource group.
 
-![Cloud Shell Setup]
 2. Follow instruction at [adding-a-new-ssh-key-to-your-github-account](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account) and add public key to your Git Hub Account.
 3. Clone the repo into Cloud Shell use SSH URL.
 
