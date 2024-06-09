@@ -1,24 +1,29 @@
-trigger:
-- main
+name: Python application test with GitHub Actions
 
-pool:
-  vmImage: 'ubuntu-latest'
+on: [push]
 
-steps:
-- task: UsePythonVersion@0
-  inputs:
-    versionSpec: '3.9'
-    addToPath: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
-- script: |
-    python -m pip install --upgrade pip
-    make install
-  displayName: 'Install dependencies'
+    steps:
+    - name: Check out repository code
+      uses: actions/checkout@v2
 
-- script: |
-    make lint
-  displayName: 'Lint with pylint'
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
 
-- script: |
-    make test
-  displayName: 'Test with pytest'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        make install
+
+    - name: Lint with pylint
+      run: |
+        make lint
+
+    - name: Test with pytest
+      run: |
+        make test
