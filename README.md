@@ -38,9 +38,6 @@ By this repository, you will learn how to use Azure pipeline to deploy sample Ma
 
 ![Verify by browser](screenshots/test-via-browser.PNG)
 
-* By CMD:
-
-![Verify by commandline](screenshots/test-by-cmd.PNG)
 
 * Output of streamed log files from deployed application
 
@@ -60,7 +57,7 @@ pip install --upgrade pip && pip install -r requirements.txt
 
 10. Open another terminal, navigate to repo folder and run:  `sh make_predict_azure_app.sh`. The result should be as below.
 
-![Run Predict in local](screenshots/run-predict-in-locahost.PNG)
+![Run Predict in local](screenshots/test-by-cmd.PNG)
 
 11. Open browser and paste: `http://localhost:8089/?tab=stats`, it should display testing result as below:
 
