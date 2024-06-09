@@ -130,8 +130,6 @@ sudo ./svc.sh install
 sudo ./svc.sh start
 ```
 
-![Setup Agent](screenshots/setup-agent3.PNG)
-
 * Verify agent status in "Agent Pool"
 
 ![Setup Agent](screenshots/setup-agent4.PNG)
