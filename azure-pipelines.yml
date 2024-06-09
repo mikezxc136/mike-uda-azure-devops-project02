@@ -10,9 +10,9 @@ pool: mypool
 
 variables:
   system.debug: 'true'
-  webAppName: nguyenlc1-project2
+  webAppName: mikezxc-project2
   projectRoot: $(System.DefaultWorkingDirectory)
-  azureServiceConnectionId: 'nguyenlc1-project2'
+  azureServiceConnectionId: 'mikezxc-project2'
   environmentName: 'Flask'
 
 stages:
