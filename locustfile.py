@@ -2,6 +2,7 @@
 
 from locust import HttpUser, task
 
+
 class Test(HttpUser):
     @task
     def checkAzurePrediction(self):
