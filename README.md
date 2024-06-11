@@ -1,8 +1,7 @@
 [![Python application test with GitHub Actions](https://github.com/mikezxc136/mike-uda-azure-devops-project02/actions/workflows/python-app.yml/badge.svg?branch=main)](https://github.com/mikezxc136/mike-uda-azure-devops-project02/actions/workflows/python-app.yml)
 
 # Overview
-
-By this repository, you will learn how to use Azure pipeline to deploy sample Machine Learning application in Azure App Service. The architecture can be found by below image:
+The architecture can be found in the image below:
 
 ![Project Diagram](screenshots/diagram.png)
 
@@ -11,144 +10,188 @@ By this repository, you will learn how to use Azure pipeline to deploy sample Ma
 * [Trello board](https://trello.com/b/EK2iO0mA/mike-project2)
 * [Project plan](https://1drv.ms/x/s!Ap6lZbK3PEB_mk3rQWBhgkWiEjkH?e=KAn9Ki)
 
-## Getting Started
+## Cloud Shell Configuration
 
-### Cloud Shell Configuration
+1. **Create new Storage Account** with a unique name in the same region as the existing resource group.
+    ![Bash](./screenshots/create_cloud_bash.png)
 
-1. Create new Storage Account with unique name in same region with existing resource group.
+2. Follow the instructions at [adding-a-new-ssh-key-to-your-github-account](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account) to add a public key to your GitHub Account.
 
-2. Follow instruction at [adding-a-new-ssh-key-to-your-github-account](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account) and add public key to your Git Hub Account.
-3. Clone the repo into Cloud Shell use SSH URL.
+    Alternatively, you can follow these steps:
+    
+    * Generate key:
+        ```bash
+        ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+        ```
+    * Import the SSH Public Key to GitHub:
+        ```bash
+        cat ~/.ssh/id_rsa.pub
+        ```
+    * Check GitHub connection:
+        ```bash
+        ssh -T git@github.com
+        ```
 
-![git Clone](./screenshots/cloud-shell-setup.PNG)
+3. Import the path to the environment:
+    * Open `.bashrc` by:
+        ```bash
+        nano ~/.bashrc
+        ```
+    * Add the following line to the end of the file:
+        ```bash
+        export PATH=$PATH:/home/odl_user/.local/bin
+        ```
+    * Save by pressing `Ctrl+X`, then `Y`, and `Enter`.
+    * Check the path environment:
+        ```bash
+        source ~/.bashrc
+        ```
+        ![Path](./screenshots/path-modifed.png)
 
-* The result should be as below
+4. Clone the repository into Cloud Shell using the SSH URL.
+    ![git Clone](./screenshots/cloud-shell-setup.PNG)
 
-![Git Clone](screenshots/git-clone-02.PNG)
-4. In cloud shell, run `make all`
+    * The result should look like this:
+    ![Git Clone](screenshots/git-clone-02.PNG)
 
-![Make all](screenshots/make-all.PNG)
-5. Run the command `sh commands.sh` for Azure pipeline and App Service creation.
+5. In Cloud Shell, run:
+    ```bash
+    make all
+    ```
+    ![Make all](screenshots/make-all.PNG)
 
-6. Clone the repo into local laptop/desktop (use either HTTPs or SSH)
+6. Run the command:
+    ```bash
+    sh commands.sh
+    ```
+    This will set up the Azure pipeline and App Service.
 
-7. Verify project running on Azure App Service.
+7. Clone the repository to your local machine (use either HTTPS or SSH).
 
-* By browser:
+8. Verify the project is running on Azure App Service.
+    * By browser:
+        ![Verify by browser](screenshots/test-via-browser.PNG)
+    * Output of streamed log files from the deployed application:
+        ![App Service Logs](screenshots/app-service-logs.PNG)
 
-![Verify by browser](screenshots/test-via-browser.PNG)
+9. Run the following commands (you can change the command based on your OS; for my case, it is Windows):
+    ```shell
+    python -m venv .
+    source Scripts/activate
+    python.exe -m pip install --upgrade pip
+    pip install --upgrade pip && pip install -r requirements.txt
+    ```
 
-* Output of streamed log files from deployed application
+10. Start `locust` in your local environment by running the command:
+    ```bash
+    locust -f locustfile.py --host=https://mikezxc136-udacity-project2.azurewebsites.net
+    ```
+    The result should look like this:
+    ![Locust Starting](screenshots/start-locust.PNG)
 
-![App Service Logs](screenshots/app-service-logs.PNG)
-8. Run below command (you can change the command based on your OS, for my case is Window)
+11. Open another terminal, navigate to the repository folder, and run:
+    ```bash
+    sh make_predict_azure_app.sh
+    ```
+    The result should look like this:
+    ![Run Predict in local](screenshots/test-by-cmd.PNG)
 
-```shell
-python -m venv .
-source Scipts/active
-python.exe -m pip install --upgrade pip
-pip install --upgrade pip && pip install -r requirements.txt
-```
+12. Open a browser and go to:
+    ```bash
+    http://localhost:8089/?tab=stats
+    ```
+![locust](screenshots/locust.PNG)
+## Configure Azure Pipeline Agent
 
-9. Start `locust` in your local environment by running command: `locust -f locustfile.py --host=https://mikezxc136-udacity-project2.azurewebsites.net`. The result should be as below.
+1. Open a new tab for [Azure DevOps](https://aex.dev.azure.com).
 
-![Locust Starting](screenshots/start-locust.PNG)
+2. Set up your DevOps organization, a project, and a service connection.
 
-10. Open another terminal, navigate to repo folder and run:  `sh make_predict_azure_app.sh`. The result should be as below.
+3. Create a Personal Access Token (PAT) with "Full access" permission. Store the token securely.
 
-![Run Predict in local](screenshots/test-by-cmd.PNG)
+4. Create a new pool named `mypool` as a `Self-hosted` type.
 
-11. Open browser and paste: `http://localhost:8089/?tab=stats`
+5. Open the newly created Agent pool to add a new agent, select `Linux x64`, and copy the download link.
+![Agent pool]()
 
-### Configure Azure Pipeline Agent
+6. Open "Virtual machine" service, search for the VM named `my-agent-1`, and copy the Public IP address.
 
-1. Navigate to browser that now logged in with Azure account.
-2. Open new tab and paste [Azure DevOps](https://aex.dev.azure.com).
-3. DevOps org, a project and Service connection.
-4. Create a Personal Access Token (PAT) with "Full access" permission. You need store the token in secure place.
-5. Go to "Project settings" on bottom-left conner, select  "Agent pools" and create new pool named `mypool` as `Self-hosted` type.
-6. Open the newly created Agent pool to add a new agent, select `Linux x64` and copy the download link.
-7. Open "Virtual machine" service, search by name `my-agent-1` and copy Public IP address.
+7. Connect to the VM by running:
+    ```bash
+    ssh devopsagent@<IP_in_Step_6>
+    ```
+    Type `DevOpsAgent@123` as the password (Note that the password will not show during input).
 
-8. Connect to the VM by running command `ssh devopsagent@<IP_in_Step_7>`. Typing `DevOpsAgent@123` as password (Please note that password will not show during keyin time)
+    * Install Docker in the agent:
+        ```bash
+        sudo snap install docker
+        sudo groupadd docker
+        sudo usermod -aG docker $USER
+        ```
 
-* Install docker in the agent.
+    * Install Python v3.9:
+        ```bash
+        sudo apt-get update
+        sudo apt update -y
+        sudo apt install software-properties-common
+        sudo add-apt-repository ppa:deadsnakes/ppa
+        sudo apt install python3.9 -y
+        sudo apt-get install python3.9-venv -y
+        sudo apt-get install python3-pip -y
+        python3.9 --version
+        pip --version
+        sudo apt-get install python3.9-distutils
+        sudo apt-get -y install zip
+        ```
 
-```shell
-sudo snap install docker
-sudo groupadd docker
-sudo usermod -aG docker $USER
-```
+    * Pylint configuration:
+        ```bash
+        pip install pylint==2.13.7
+        pip show --files pylint
+        echo $PATH
+        export PATH=$HOME/.local/bin:$PATH
+        echo $PATH
+        which pylint
+        ```
 
-* Install python v3.9
+    * Install the pipeline agent:
+        ```bash
+        curl -O https://vstsagentpackage.azureedge.net/agent/3.240.1/vsts-agent-linux-x64-3.240.1.tar.gz
+        mkdir myagent && cd myagent
+        tar zxvf ../vsts-agent-linux-x64-3.240.1.tar.gz
+        ./config.sh
+        ```
 
-```shell
-sudo apt-get update
-sudo apt update -y
-sudo apt install software-properties-common
-sudo add-apt-repository ppa:deadsnakes/ppa
-sudo apt install python3.9 -y
-sudo apt-get install python3.9-venv -y
-sudo apt-get install python3-pip -y
-python3.9 --version
-pip --version
-sudo apt-get install python3.9-distutils
-sudo apt-get -y install zip
-```
+    * Provide your Azure DevOps organization URL, for example:
+        ```bash
+        https://dev.azure.com/odluser260513
+        ```
+    * Use the Personal Access Token from Step 3.
+    * Set the agent pool to `mypool`.
+    * Keep the default settings for other configurations.
 
-* Pylint configuration
+    ![Setup Agent](screenshots/setup-agent2.png)
 
-```shell
-pip install pylint==2.13.7
-pip show --files pylint
-echo $PATH
-export PATH=$HOME/.local/bin:$PATH
-echo $PATH
-which pylint
-```
+    * Run the following commands to finish the setup:
+        ```bash
+        sudo ./svc.sh install
+        sudo ./svc.sh start
+        ```
 
-* Install the pipeline agent
+    * Verify the agent status in "Agent Pool":
+        ![Setup Agent](screenshots/setup-agent4.PNG)
 
-```shell
-curl -O https://vstsagentpackage.azureedge.net/agent/3.234.0/vsts-agent-linux-x64-3.234.0.tar.gz (Replace by the link copied in step 6.)
-mkdir myagent && cd myagent
-tar zxvf ../vsts-agent-linux-x64-2.202.1.tar.gz
-./config.sh
-```
+8. Back to the project page, add a new environment named `Flask`.
 
-* Server URL: Provide your Azure DevOps organization URL, ex: `https://dev.azure.com/odluser193422`
-* Personal access token: `Use value in step 4 above`
-* Agent pool: `mypool`
-* Keep as default for other configuration.
+9. Use the service principal information to create a new service connection named `mikezxc136-udacity-project2` and grant full access.
 
-![Setup Agent](screenshots/setup-agent2.png)
+10. Make changes and push them to your repository.
 
-* Run the following commands to finish the set up.
+    * Passing tests that are displayed after running the `make all` command from the `Makefile`:
+        ![Passing Tests](screenshots/passing-test.PNG)
 
-```shell
-sudo ./svc.sh install
-sudo ./svc.sh start
-```
-
-* Verify agent status in "Agent Pool"
-
-![Setup Agent](screenshots/setup-agent4.PNG)
-
-9. Back to project page and add new environment named `Flask`.
-10. User service principal information and create new service connection with named `mikezxc136-udacity-project2`, remember to grant full access.
-11. Make the change and push the change to your Repo.
-
-* Passing tests that are displayed after running the `make all` command from the `Makefile`
-
-![alt text](screenshots/passing-test.PNG)
-
-* Successful deploy of the project in Azure Pipelines.
-
-* Running Azure App Service from Azure Pipelines automatic deployment
-
-## Enhancements
-
-* Should allow to use specified python version in pipeline configuration instead of `hardcode` version in agent build.
+    * Successful deployment of the project in Azure Pipelines.
+    * Running Azure App Service from Azure Pipelines automatic deployment.
 
 ## Demo
 
