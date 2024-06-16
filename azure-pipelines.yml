@@ -12,7 +12,7 @@ variables:
   system.debug: 'true'
   webAppName: mikezxc-project2
   projectRoot: $(System.DefaultWorkingDirectory)
-  azureServiceConnectionId: 'mikezxc-project2'
+  azureServiceConnectionId: 'mike-project2'
   environmentName: 'Flask'
 
 stages:
