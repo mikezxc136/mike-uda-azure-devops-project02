@@ -183,7 +183,7 @@ The architecture can be found in the image below:
    * Verify the agent status in "Agent Pool":
      ![Setup Agent](screenshots/setup-agent4.PNG)
 8. Back to the project page, add a new environment named `Flask`.
-9. Use the service principal information to create a new service connection named `mikezxc136-udacity-project2` and grant full access.
+9. Use the service principal information to create a new service connection named `mikezxc-project2` and grant full access.
 10. Make changes and push them to your repository.
 
     * Passing tests that are displayed after running the `make all` command from the `Makefile`:
